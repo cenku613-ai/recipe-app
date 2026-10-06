@@ -1,0 +1,25 @@
+# RecipeBox — 一鍵部署
+#   啟動：docker compose up -d --build
+#   網址：http://localhost:3777
+#   停止：docker compose down
+#   看紀錄：docker compose logs -f
+#   備份：備份 ./data/recipes.db 即可
+
+services:
+  recipebox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: recipebox:latest
+    container_name: recipebox
+    ports:
+      - "${PORT:-3777}:3777"
+    environment:
+      - PORT=3777
+      - HOST=0.0.0.0
+      - SEED_ON_START=${SEED_ON_START:-1}
+      - TZ=${TZ:-Asia/Taipei}
+    volumes:
+      # 資料庫持久化：刪除容器也不會掉資料
+      - ./data:/app/data
+    restart: unless-stopped

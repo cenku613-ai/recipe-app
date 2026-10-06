@@ -1,0 +1,18 @@
+.git
+.gitignore
+.gitattributes
+node_modules
+data
+.npm-cache
+.acl-recovery
+npm-debug.log*
+*.log
+
+# 測試產物（容器不需要）
+test/downloads
+test/*.png
+test/*.pdf
+test/chrome.log
+
+# 不需要進映像檔的文件
+README.md

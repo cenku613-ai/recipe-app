@@ -12,7 +12,7 @@ const db = new DatabaseSync(process.argv[2] || path.join(__dirname, '..', 'data'
 db.exec('PRAGMA foreign_keys = ON;');
 
 const TEST_EMAIL_LIKE = [
-  'smoke-%', 'iso-%', 'cdp-%', 'cdpai-%', 'cdppdf-%', 'dbg-%', 'admin-%', 'user-%',
+  'smoke-%', 'iso-%', 'cdp-%', 'cdpai-%', 'cdppdf-%', 'dbg-%', 'admin-%', 'user-%', 'docker-test%',
 ];
 const TEST_TITLE_LIKE = ['%測試%', '%煙霧%', 'AI 測試%'];
 

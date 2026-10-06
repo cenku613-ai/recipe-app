@@ -63,12 +63,40 @@ node test/set-admin.js 你的email@example.com
 
 ## 🚀 部署（發佈上線）
 
+### 方式一：Docker Compose 一鍵部署（推薦）
+
+```bash
+git clone https://github.com/cenku613-ai/recipe-app.git
+cd recipe-app
+docker compose up -d --build      # 建置並啟動
+```
+
+完成後開啟 **http://localhost:3777** 即可註冊使用。
+
+| 指令 | 說明 |
+| --- | --- |
+| `docker compose up -d --build` | 建置映像檔並在背景啟動 |
+| `docker compose logs -f` | 即時查看紀錄 |
+| `docker compose down` | 停止並移除容器（資料保留） |
+| `docker compose up -d --build` | 更新程式後重新部署 |
+| `PORT=8080 docker compose up -d` | 改用其他對外埠 |
+
+**資料持久化**：資料庫放在 `./data/recipes.db`，已掛載進容器 —— 刪除容器不會掉資料。**備份只需備份 `./data/recipes.db`**。
+
+**關閉開機自動寫入示範食譜**：`SEED_ON_START=0 docker compose up -d`
+
+容器規格：Node.js 22 Alpine、非 root 使用者、內建 healthcheck、`restart: unless-stopped`。
+
+> 實測通過：建置 → 啟動 → seed 檢查 → HTTP 200／401 → 資料庫寫入 → 資料持久化。
+
+### 方式二：直接用 Node.js
+
 ```bash
 # 1. 上傳整個資料夾到伺服器（Node.js 22+）
-# 2. 安裝（只為了 jsPDF/html2canvas 的 vendor 檔；伺服器本身零相依）
-npm install
+# 2. 安裝相依
+npm ci --omit=dev
 
-# 3. 啟動（建議用 systemd / pm2 / Docker 守護）
+# 3. 啟動（建議用 systemd / pm2 守護）
 PORT=80 NODE_HOST=0.0.0.0 node --disable-warning=ExperimentalWarning server.js
 ```
 
@@ -249,6 +277,9 @@ recipe-app/
 npm test          # 前端煙霧測試（jsdom）：走訪所有畫面、互動、清單、表單與文字解析
 npm run test:pdf  # 以無頭 Chrome 實際執行「下載 PDF」，確認產出 .pdf 檔
 npm run test:extract # CDP 實際操作「取得影片說明→建立步驟草稿→解析食材」
+npm run test:ai   # AI 解析兩條路徑（DeepSeek 文字／Gemini 看影片）
+npm run test:admin # 管理員後台 API（獨立資料庫）
+bash test/docker-test.sh  # Docker 建置＋部署＋API 全流程驗證（WSL/Linux）
 node test/reset-demo.js   # 測試後清理：刪除測試帳號、把示範食譜歸回未指派
 ```
 
