@@ -1,8 +1,0 @@
-feat: Docker 化與 docker-compose 一鍵部署
-
-- Dockerfile：Node 22 Alpine、非 root 使用者、內建 healthcheck
-- docker-entrypoint.sh：首次啟動自動寫入示範資料（可 SEED_ON_START=0 關閉）
-- docker-compose.yml：資料持久化（./data 掛載）、restart: unless-stopped
-- .dockerignore：排除 node_modules、資料庫與測試產物
-- README：新增 Docker 一鍵部署與常用指令
-- test/docker-test.sh：建置＋部署＋HTTP／API／持久化全流程驗證（已實測通過）

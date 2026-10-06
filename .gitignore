@@ -7,3 +7,4 @@ test/*.png
 test/*.pdf
 test/chrome.log
 .acl-recovery/
+commit-msg.txt
