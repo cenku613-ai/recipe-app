@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8590c">
+  <meta name="description" content="食譜盒 — 把煮食教學影片變成食譜：詳細步驟、採購清單、PDF 匯出">
+  <title>食譜盒 · 影片食譜與採購清單</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/css/app.css?v=20261003i">
+</head>
+<body>
+  <!-- ========== 應用外殼（列印時隱藏） ========== -->
+  <div id="app-chrome">
+    <header class="app-header no-print">
+      <div class="wrap header-inner">
+        <a class="brand" href="#/">
+          <span class="brand-logo" aria-hidden="true">🍳</span>
+          <span class="brand-text">食譜盒</span>
+        </a>
+
+        <nav class="top-nav" aria-label="主導覽">
+          <a href="#/" data-nav="home">食譜</a>
+          <a href="#/shopping" data-nav="shopping">採購清單<span class="badge" id="shopBadge" hidden>0</span></a>
+          <a href="#/fav" data-nav="fav">收藏</a>
+        </nav>
+
+        <div class="header-actions">
+          <span data-admin-slot class="admin-slot"></span>
+          <span data-auth-slot class="auth-slot"></span>
+          <button class="btn btn-ghost btn-icon" data-action="open-settings" type="button"
+                  title="AI 設定" aria-label="AI 設定">⚙</button>
+          <button class="btn btn-primary hide-mobile" data-action="new-recipe" type="button">
+            <span aria-hidden="true">＋</span> 新增食譜
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="view" class="app-main wrap" tabindex="-1"></main>
+
+    <footer class="app-footer no-print">
+      <div class="wrap">
+        <span>食譜盒 · 影片教學轉食譜 · 採購清單 · PDF 匯出</span>
+        <span class="muted" id="footerStats"></span>
+      </div>
+    </footer>
+
+    <!-- 手機底部導覽 -->
+    <nav class="bottom-nav no-print" aria-label="行動導覽">
+      <a href="#/" data-nav="home">
+        <span class="bn-icon" aria-hidden="true">📖</span><span>食譜</span>
+      </a>
+      <a href="#/shopping" data-nav="shopping">
+        <span class="bn-icon" aria-hidden="true">🛒</span><span>採購</span>
+        <span class="badge" id="shopBadgeMobile" hidden>0</span>
+      </a>
+      <a href="#/fav" data-nav="fav">
+        <span class="bn-icon" aria-hidden="true">⭐</span><span>收藏</span>
+      </a>
+      <a href="#/new" data-nav="new">
+        <span class="bn-icon" aria-hidden="true">➕</span><span>新增</span>
+      </a>
+      <a href="#" data-nav="settings" data-action="open-settings">
+        <span class="bn-icon" aria-hidden="true">⚙</span><span>設定</span>
+      </a>
+      <a href="#/account" data-nav="account">
+        <span class="bn-icon" aria-hidden="true">👤</span><span>我的</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ========== PDF 版面（平常藏在畫面外，列印／轉檔用） ========== -->
+  <div id="pdf-sheet" class="pdf-sheet" aria-hidden="true"></div>
+
+  <!-- 對話框與提示 -->
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+
+  <script src="/vendor/jspdf.umd.min.js?v=20261003i"></script>
+  <script src="/vendor/html2canvas.min.js?v=20261003i"></script>
+  <script src="/js/core.js?v=20261003i"></script>
+  <script src="/js/views.js?v=20261003i"></script>
+  <script src="/js/form.js?v=20261003i"></script>
+  <script src="/js/main.js?v=20261003i"></script>
+</body>
+</html>

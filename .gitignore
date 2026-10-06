@@ -1,0 +1,9 @@
+node_modules/
+.npm-cache/
+data/*.db
+data/*.db-journal
+test/downloads/
+test/*.png
+test/*.pdf
+test/chrome.log
+.acl-recovery/

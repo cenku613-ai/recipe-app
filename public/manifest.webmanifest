@@ -1,0 +1,15 @@
+{
+  "name": "食譜盒 RecipeBox",
+  "short_name": "食譜盒",
+  "description": "把煮食教學影片變成食譜：詳細步驟、採購清單、PDF 匯出",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#faf7f2",
+  "theme_color": "#e8590c",
+  "lang": "zh-Hant",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
